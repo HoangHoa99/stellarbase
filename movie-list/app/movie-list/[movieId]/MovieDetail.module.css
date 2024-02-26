@@ -1,0 +1,33 @@
+.movie_detail_container {
+    width: 60vw;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.movie_detail_img {
+    width: 40%;
+    height: auto;
+}
+
+.movie_detail_info {
+    width: 45%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie_detail_overview {
+    font-size: 25px;
+    text-align: justify;
+}
+
+.movie_detail_extra_info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    font-size: 25px;
+}
