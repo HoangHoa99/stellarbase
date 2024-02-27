@@ -53,3 +53,9 @@
     align-items: flex-start;
     width: 90%;
 }
+
+.page_header {
+    position: absolute;
+    left: 20px;
+    top: 5%;
+}

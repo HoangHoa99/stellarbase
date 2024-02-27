@@ -18,11 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <div className="header_menu">
+        <div className="header_menu">
           <Link href={"/favorite-list"}>Favorite list</Link>
           <Link href={"/movie-list"}>Popular movie</Link>
         </div>
-        <Provider>{children}</Provider>  
+        <Provider>{children}</Provider>
       </body>
     </html>
   )

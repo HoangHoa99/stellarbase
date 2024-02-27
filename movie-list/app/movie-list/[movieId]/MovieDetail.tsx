@@ -1,25 +1,27 @@
 "use client"
-import { Fragment, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import styles from "./MovieDetail.module.css"
 import { useQuery } from "@tanstack/react-query";
 import { MovieItem, getMovieDetailById } from "@/utils/service";
 
 export default function MovieDetail(props: any) {
 
-    let [id, setId] = useState(0)
-
     const movieId = props.props
 
     let { isLoading, data, refetch } = useQuery<MovieItem>({
         queryKey: [],
         queryFn: () => getMovieDetailById(movieId),
-        staleTime: 5*1000,
-    })    
+        staleTime: Infinity,
+    })
 
-    if(movieId != id) {
-        setId(movieId)
-        refetch()
-    }
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            refetch();
+        }, 5);
+
+        // Clean up the timer on component unmount
+        return () => clearTimeout(timer);
+    }, [])
     
     return isLoading || !data ? (
             <div className={styles.center_loading}>

@@ -33,7 +33,12 @@ const options = {
 export async function getPopularMovies() {
     const res = await fetch('https://api.themoviedb.org/3/movie/popular', options)
     return res.json();
-};
+}
+
+export async function getFavoriteMovies() {
+    const res = await fetch(`https://api.themoviedb.org/3/account/${process.env.NEXT_PUBLIC_ACCOUNT_ID}/favorite/movies?page=1&sort_by=created_at.desc`, options)
+    return res.json();
+}
 
 export async function getMovieDetailById(movieId: number) {
     const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}`, options)
