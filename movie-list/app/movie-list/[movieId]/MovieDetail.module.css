@@ -20,6 +20,10 @@
     flex-direction: column;
 }
 
+.movie_detail_info h2 {
+    font-size: 50px;
+}
+
 .movie_detail_overview {
     font-size: 25px;
     text-align: justify;
@@ -38,4 +42,25 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+}
+
+.movie_detail_info label {
+    font-size: 25px;
+}
+
+.movie_detail_info ul {
+    list-style: none;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.movie_detail_info ul li {
+    width: max-content;
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid;
+}
+
+.movie_detail_extra_info_type, .movie_detail_extra_info_company {
+    margin-top: 30px;    
 }
