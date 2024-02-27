@@ -13,6 +13,7 @@ add this variable into the .env file
 
 ```js
 NEXT_PUBLIC_TMDB_API_KEY="YOUR_API_KEY"
+NEXT_PUBLIC_ACCOUNT_ID="YOUR_ACCOUNT_ID"
 ```
 
 and then open the terminal run this command
@@ -27,6 +28,3 @@ Open the terminal and run this command
 npm run dev
 ```
 to start the project. Open the browser and access to project follow this link http://localhost:3000
-
-
-
