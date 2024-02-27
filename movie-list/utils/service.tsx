@@ -9,16 +9,16 @@ export type MovieItem = {
     adult: boolean;
     backdrop_path: string;
     genre_ids: number[];
-	id: number;
-	original_language: string;
-	original_title: string;
-	overview: string;
-	popularity: number;
-	poster_path: string;
-	release_date: string;
-	title: string;
-	video: boolean;
-	vote_average: number;
+    id: number;
+    original_language: string;
+    original_title: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    release_date: string;
+    title: string;
+    video: boolean;
+    vote_average: number;
     vote_count: number;
 }
 
@@ -42,5 +42,20 @@ export async function getFavoriteMovies() {
 
 export async function getMovieDetailById(movieId: number) {
     const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}`, options)
+    return res.json()
+}
+
+export async function addFavoriteMovie(movieId: number) {
+    const postOptions = {
+        method: 'POST',
+        headers: {
+            accept: 'application/json',
+            'content-type': 'application/json',
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+        },
+        body: JSON.stringify({ media_type: 'movie', media_id: movieId, favorite: true })
+    }
+
+    const res = await fetch(`https://api.themoviedb.org/3/account/${process.env.NEXT_PUBLIC_ACCOUNT_ID}/favorite`, postOptions)
     return res.json()
 }

@@ -1,9 +1,9 @@
-import Movies from "./Movies";
+import MoviesPage from "./Movies";
 
-export default async function Page() {
+export default function MoviePage() {
     return (
         <main style={{ padding: 20 }}>
-            <Movies />
+            <MoviesPage />
         </main>
     )
 }
