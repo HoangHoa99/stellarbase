@@ -105,3 +105,14 @@ a {
     color-scheme: dark;
   }
 }
+
+.header_menu {
+  width: 260px;
+  margin-left: 20px;
+  margin-top: 20px;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  z-index: 1;
+}

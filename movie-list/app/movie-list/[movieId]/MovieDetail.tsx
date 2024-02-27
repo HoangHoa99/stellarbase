@@ -1,10 +1,31 @@
-import { Fragment } from "react"
-import { MovieItem } from "../Movies"
+"use client"
+import { Fragment, useState } from "react"
 import styles from "./MovieDetail.module.css"
+import { useQuery } from "@tanstack/react-query";
+import { MovieItem, getMovieDetailById } from "@/utils/service";
 
 export default function MovieDetail(props: any) {
-    const data = props.props
-    return (
+
+    let [id, setId] = useState(0)
+
+    const movieId = props.props
+
+    let { isLoading, data, refetch } = useQuery<MovieItem>({
+        queryKey: [],
+        queryFn: () => getMovieDetailById(movieId),
+        staleTime: 5*1000,
+    })    
+
+    if(movieId != id) {
+        setId(movieId)
+        refetch()
+    }
+    
+    return isLoading || !data ? (
+            <div className={styles.center_loading}>
+                <h1>Loading...</h1>
+            </div>
+        ) : (
         <Fragment>
             {
                 <div style={{ position: "relative", width: "100vw", height: "100vh" }}>

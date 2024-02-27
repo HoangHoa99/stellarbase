@@ -3,64 +3,14 @@ import { useQuery } from "@tanstack/react-query"
 import Link from "next/link";
 import React, { Fragment} from "react"
 import styles from "./Movies.module.css"
+import { MovieList, getPopularMovies } from "@/utils/service";
 
-const options = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
-    }
-};
-
-let globalVal: MovieItem[] | undefined = []
-
-export type PopularMovies = {
-    page: number;
-    results: MovieItem[];
-    total_pages: number;
-    total_results: number;
-};
-
-export type MovieItem = {
-    adult: boolean;
-    backdrop_path: string;
-    genre_ids: number[];
-	id: number;
-	original_language: string;
-	original_title: string;
-	overview: string;
-	popularity: number;
-	poster_path: string;
-	release_date: string;
-	title: string;
-	video: boolean;
-	vote_average: number;
-    vote_count: number;
-}
-
-async function getPopularMovies() {
-    const response = await
-        fetch('https://api.themoviedb.org/3/movie/popular', options)
-            .then(response => response.json())
-    return response
-}
-
-export function getMovieById(movieId: number) {
-    if(globalVal) {
-        // const arr = Array.from(globalVal);
-        return globalVal.find(item => item.id == movieId)
-    }
-    return undefined
-}
-
-export default function Movies() {
-    const { data } = useQuery<PopularMovies>({
-        queryKey: [],
+export default function MoviesPage() {
+    const { data } = useQuery<MovieList>({
+        queryKey: ['page', 1],
         queryFn: () => getPopularMovies(),
-        staleTime: 5 * 1000,
+        staleTime: Infinity,
     })
-
-    setTimeout(() => globalVal = data?.results)
 
     return (
         <Fragment>

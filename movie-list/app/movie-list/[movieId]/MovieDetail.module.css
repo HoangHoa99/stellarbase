@@ -31,3 +31,11 @@
     margin-top: 50px;
     font-size: 25px;
 }
+
+.center_loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
