@@ -15,7 +15,7 @@ export default function FavoritesPage() {
     useEffect(() => {
         const timer = setTimeout(() => {
             refetch();
-        }, 5);
+        }, 0);
 
         // Clean up the timer on component unmount
         return () => clearTimeout(timer);

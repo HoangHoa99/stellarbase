@@ -30,8 +30,8 @@ const options = {
     }
 }
 
-export async function getPopularMovies() {
-    const res = await fetch('https://api.themoviedb.org/3/movie/popular', options)
+export async function getPopularMovies(page: number) {
+    const res = await fetch(`https://api.themoviedb.org/3/movie/popular?page=${page}`, options)
     return res.json();
 }
 

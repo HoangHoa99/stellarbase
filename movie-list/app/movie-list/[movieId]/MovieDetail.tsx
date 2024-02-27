@@ -17,7 +17,7 @@ export default function MovieDetail(props: any) {
     useEffect(() => {
         const timer = setTimeout(() => {
             refetch();
-        }, 5);
+        }, 0);
 
         // Clean up the timer on component unmount
         return () => clearTimeout(timer);
@@ -39,7 +39,7 @@ export default function MovieDetail(props: any) {
                         />
                         <div className={styles.movie_detail_info}>
                             <h2>{data.original_title}</h2>
-                            <span>Original language: {data.original_language.toUpperCase()}</span>
+                            <span>Original language: {data.original_language}</span>
                             <span style={{marginTop: "35px", fontSize: "25px"}}>Overview: </span>
                             <p className={styles.movie_detail_overview}>{data.overview}</p>
                             <div className={styles.movie_detail_extra_info}>

@@ -1,31 +1,56 @@
 "use client"
 import { useQuery } from "@tanstack/react-query"
 import Link from "next/link";
-import React, { Fragment, useEffect } from "react"
+import React, { Fragment, useEffect, useState } from "react"
 import styles from "./Movies.module.css"
 import { MovieList, getPopularMovies } from "@/utils/service";
 
 export default function MoviesPage() {
-    const { data, refetch } = useQuery<MovieList>({
-        queryKey: ['page', 1],
-        queryFn: () => getPopularMovies(),
+
+    // const [currentPage, setCurrentPage] = useState(1)
+
+    const { isLoading, data, refetch } = useQuery<MovieList>({
+        queryKey: [],
+        queryFn: () => getPopularMovies(1),
         staleTime: Infinity,
     })
 
     useEffect(() => {
         const timer = setTimeout(() => {
             refetch();
-        }, 5);
+        }, 0);
 
         // Clean up the timer on component unmount
         return () => clearTimeout(timer);
     }, [])
 
-    return (
+    function fetchNextPage() {
+        // let nextPage = currentPage + 1
+        // setCurrentPage(nextPage)
+    }
+
+    function fetchPrevPage() {
+        // if (currentPage > 1) {
+        //     let prevPage = currentPage - 1
+        //     setCurrentPage(prevPage)
+        // }
+    }
+
+    return isLoading || !data ? (
+        <div className={styles.center_loading}>
+            <h1>Loading...</h1>
+        </div>
+    ) : (
         <Fragment>
             {<div>
-                <div style={{ width: "100vw", height: "1px", backgroundColor: "white", position: "absolute", top: "4%" }}></div>
-                <h1 className={styles.page_header}>Popular Movie</h1>
+                <div className={styles.page_header}>
+                    <div style={{ width: "25%" }}></div>
+                    <h1>Popular Movie</h1>
+                    <div className={styles.header_action}>
+                        <button onClick={fetchPrevPage}>Prev</button>
+                        <button onClick={fetchNextPage}>Next</button>
+                    </div>
+                </div>
                 <div className={styles.movies_container}>
                     {data?.results.map((movie) => (
                         <Link key={movie.id} className={styles.movie_item} href={`/movie-list/${movie.id}`}>
