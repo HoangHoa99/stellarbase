@@ -1,6 +1,6 @@
 import Movies from "./Movies";
 
-export default async function Page() {
+export default function Page() {
     return (
         <main style={{ padding: 20 }}>
             <Movies />
